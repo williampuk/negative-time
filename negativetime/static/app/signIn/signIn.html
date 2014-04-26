@@ -6,7 +6,7 @@
 		</div>
 		<div class="form-group">
 			<label for="password">Password</label>
-			<input id="password" class="form-control" type="password" placeholder="Password" data-ng-model="signIn.password">
+			<input id="password" class="form-control" type="password" placeholder="Password" data-ng-model="signIn.password" on-enter-key-down="signIn.signIn()">
 		</div>
 		<div class="form-group">
 			<button data-ng-click="signIn.signIn()" class="btn btn-primary">Sign In</button>

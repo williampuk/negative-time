@@ -4,6 +4,16 @@ body {
 	font-family: "Droid Sans",Helvetica,Arial,sans-serif;
 	font-size: 14px;
 	background-color: #333333;
+	color: #EEE;
+}
+
+div#mainView {
+	padding: 10px 30px;
+}
+
+.navbar .navbar-brand {
+	color: #EEE;
+	font-weight: bold;
 }
 
 .navbar-inverse .navbar-nav>.active>a, .navbar-inverse .navbar-nav>.active>a:hover, .navbar-inverse .navbar-nav>.active>a:focus {

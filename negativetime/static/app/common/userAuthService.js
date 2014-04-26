@@ -9,7 +9,17 @@ docApp.factory('userAuthService', ['$http', function($http) {
 		},
 
 		signIn: function(username, password) {
-			return $http.post('/login/', $.param({username:username, password:password})).success(function(data, status, headers, config) {
+
+			var defaultsHeader = angular.extend({}, $http.defaults.headers);
+
+			var config = {
+				method: 'POST',
+				url: '/login/',
+				data: $.param({username:username, password:password}),
+				headers: angular.extend(defaultsHeader, {'Content-Type' : 'application/x-www-form-urlencoded'})
+			};
+
+			return $http(config).success(function(data, status, headers, config) {
 				console.log(data, status, headers, config);
 				appUser = {username: username};
 			});

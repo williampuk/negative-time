@@ -1,0 +1,18 @@
+@import url(//fonts.googleapis.com/css?family=Droid+Sans:400,700);
+
+body {
+	font-family: "Droid Sans",Helvetica,Arial,sans-serif;
+	font-size: 14px;
+	background-color: #333333;
+}
+
+.navbar-inverse .navbar-nav>.active>a, .navbar-inverse .navbar-nav>.active>a:hover, .navbar-inverse .navbar-nav>.active>a:focus {
+	color: #fff;
+	border-bottom: 2px solid;
+	border-bottom-color: white;
+	background-color: #222222;
+}
+
+.navbar-nav.navbar-core-menu {
+	margin-left: 50px;
+}

@@ -3,6 +3,9 @@ from django.conf.urls import patterns, include, url
 from django.contrib import admin
 admin.autodiscover()
 
+from docit.views import ProjectCreateView
+
+
 urlpatterns = patterns('',
     # Examples:
     # url(r'^$', 'negativetime.views.home', name='home'),
@@ -12,4 +15,7 @@ urlpatterns = patterns('',
 
     url(r'^api-auth/', include('rest_framework.urls',
                                namespace='rest_framework')),
+
+
+    url(r'^projects/$', ProjectCreateView.as_view(), name='projects'),
 )

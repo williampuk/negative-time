@@ -87,3 +87,6 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, "static"),
 )
+
+
+DOCIT_PROJECT_DIR = os.path.join(BASE_DIR, 'projects')

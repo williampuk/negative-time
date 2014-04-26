@@ -3,7 +3,7 @@ from django.conf.urls import patterns, include, url
 from django.contrib import admin
 admin.autodiscover()
 
-from docit.views import ProjectCreateView
+from docit.views import ProjectListCreateView
 
 
 urlpatterns = patterns('',
@@ -17,5 +17,5 @@ urlpatterns = patterns('',
                                namespace='rest_framework')),
 
 
-    url(r'^projects/$', ProjectCreateView.as_view(), name='projects'),
+    url(r'^projects/$', ProjectListCreateView.as_view(), name='projects'),
 )

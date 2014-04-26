@@ -1,6 +1,6 @@
 'use strict';
 
-var docApp = angular.module('docApp', ['ui.bootstrap', 'ui.router']);
+var docApp = angular.module('docApp', ['ui.bootstrap', 'ui.router', 'ngResource', 'ngCookies']);
 
 
 docApp.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider) {
@@ -17,12 +17,15 @@ docApp.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, 
     .state('signIn', {
       url: "/signIn",
       templateUrl: "signIn/signIn.html",
-      controller: 'signInCtrl'
+      controller: 'signInCtrl as signIn'
     });
 
+}])
+.run(['$http', '$cookies', function($http, $cookies) {
+	console.log('csrftoken', $cookies.csrftoken);
+	$http.defaults.headers.common['X-CSRFToken'] = $cookies.csrftoken;
 }]);
-
-docApp.run(['$state', '$rootScope', function($state, $rootScope) {
-	$rootScope.$state = $state;
-	console.log('state', $rootScope.$state);
-}]);
+// .run(['$state', '$rootScope', function($state, $rootScope) {
+// 	$rootScope.$state = $state;
+// 	console.log('state', $rootScope.$state);
+// }]);

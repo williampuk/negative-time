@@ -3,7 +3,7 @@ from django.conf.urls import patterns, include, url
 from django.contrib import admin
 admin.autodiscover()
 
-from docit.views import ProjectListCreateView, LoginView, LogoutView
+from docit.views import ProjectListCreateView, LoginView, LogoutView, SectionListView
 
 
 urlpatterns = patterns('',
@@ -20,4 +20,5 @@ urlpatterns = patterns('',
     url(r'^projects/$', ProjectListCreateView.as_view(), name='projects'),
     url(r'^login/$', LoginView.as_view(), name='login'),
     url(r'^logout/$', LogoutView.as_view(), name='logout'),
+    url(r'^projects/(?P<project_id>\d+)/$', SectionListView.as_view(), name='sections'),
 )

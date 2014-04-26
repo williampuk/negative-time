@@ -1,8 +1,12 @@
+import json
+import os
+
 from django.contrib.auth import authenticate, logout
 from django.views.generic import View
-from django.http import HttpResponse
+from django.http import HttpResponse, Http404
 
-from rest_framework.generics import ListCreateAPIView
+
+from rest_framework.generics import ListCreateAPIView, ListAPIView
 from rest_framework.permissions import IsAuthenticated
 from rest_framework import status
 
@@ -37,3 +41,25 @@ class ProjectListCreateView(ListCreateAPIView):
 
     def get_queryset(self):
         return Project.objects.filter(user=self.request.user)
+
+
+class SectionListView(View):
+    def get(self, request, format=None, project_id=None):
+        try:
+            project = Project.objects.get(id=project_id)
+        except Exception as e:
+            return Http404()
+
+        sections = project.sections()
+
+        def to_dict(section):
+            name, content, children = section
+            return {
+                'name': name,
+                'content': content,
+                'children': [to_dict(child) for child in children]
+            }
+        jsons = json.dumps([to_dict(section) for section in sections])
+        return HttpResponse(jsons)
+
+

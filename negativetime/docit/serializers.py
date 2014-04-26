@@ -2,7 +2,7 @@ from django.contrib.auth import get_user_model
 
 from rest_framework import serializers
 
-from .models import Project
+from .models import Project, Section
 
 
 class ProjectSerializer(serializers.ModelSerializer):
@@ -15,3 +15,4 @@ class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = get_user_model()
         field = ('id', 'username')
+

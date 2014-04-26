@@ -19,6 +19,11 @@ docApp.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, 
       templateUrl: "create/create.html"
     })
 
+    .state('manage', {
+      url: "/manage",
+      templateUrl: "manage/manage.html"
+    })
+
     // SignIn State
     .state('signIn', {
       url: "/signIn",

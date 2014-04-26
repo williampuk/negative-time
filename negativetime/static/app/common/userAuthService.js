@@ -9,7 +9,7 @@ docApp.factory('userAuthService', ['$http', function($http) {
 		},
 
 		signIn: function(username, password) {
-			return $http.post('/login/', {username:username, password:password}).success(function(data, status, headers, config) {
+			return $http.post('/login/', $.param({username:username, password:password})).success(function(data, status, headers, config) {
 				console.log(data, status, headers, config);
 				appUser = {username: username};
 			});

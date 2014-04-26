@@ -4,9 +4,13 @@ docApp.factory('userAuthService', ['$http', function($http) {
 	var appUser = undefined;
 
 	return {
-		isLoggedIn: function() {
+		isSignedIn: function() {
 			return !!appUser;
 		},
+
+        getUser: function() {
+            return appUser;
+        },
 
 		signIn: function(username, password) {
 

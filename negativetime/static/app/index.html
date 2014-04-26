@@ -8,33 +8,11 @@
 
 </head>
 <body>
-	<!-- Header -->
-	<div class="navbar navbar-inverse navbar-static-top" role="navigation">
-      <div class="container">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle" data-ng-init="isCollapsed=true" data-ng-click="isCollapsed = !isCollapsed">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand" href="#">Doc-git!</a>
-        </div>
-        <div class="navbar-collapse collapse" data-collapse="isCollapsed">
-          <ul class="nav navbar-nav navbar-core-menu">
-            <li ui-sref-active="active"><a ui-sref="discover">Discover</a></li>
-            <li ui-sref-active="active"><a ui-sref="create">Create</a></li>
-            <li ui-sref-active="active"><a ui-sref="manage">Manage</a></li>
-            <li ui-sref-active="active"><a ui-sref="about">About</a></li>
-          </ul>
-          <ul class="nav navbar-nav navbar-right">
-            <li ui-sref-active="active"><a ui-sref="signIn">Sign in</a></li>
-          </ul>
-        </div><!--/.nav-collapse -->
-      </div>
-    </div>
+	<!-- NavBar -->
+  <ng-include src="'navBar/navBar.html'"></ng-include>
 
-    <div id="mainView" data-ui-view></div>
+	<!-- MainView -->
+  <div id="mainView" data-ui-view></div>
 
 	<script src="../vendor/zepto/1.1.3/zepto.js"></script>
 	<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular.js"></script>
@@ -44,6 +22,7 @@
   <script src="../vendor/angular-ui-router/0.2.10/angular-ui-router.js"></script>  
 
 	<script src="app.js"></script>
+  <script src="navBar/navBarCtrl.js"></script>
   <script src="signIn/signInCtrl.js"></script>
   <script src="common/userAuthService.js"></script>
   <script src="common/docDirectives.js"></script>

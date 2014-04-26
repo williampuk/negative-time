@@ -1,0 +1,25 @@
+<div class="navbar navbar-inverse navbar-static-top" role="navigation" data-ng-controller="navBarCtrl">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-ng-init="isCollapsed=true" data-ng-click="isCollapsed = !isCollapsed">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#">Doc-git!</a>
+    </div>
+    <div class="navbar-collapse collapse" data-collapse="isCollapsed">
+      <ul class="nav navbar-nav navbar-core-menu">
+        <li ui-sref-active="active"><a ui-sref="discover">Discover</a></li>
+        <li ui-sref-active="active"><a ui-sref="create">Create</a></li>
+        <li ui-sref-active="active"><a ui-sref="manage">Manage</a></li>
+        <li ui-sref-active="active"><a ui-sref="about">About</a></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li ui-sref-active="active" ng-hide="isSignedIn()"><a ui-sref="signIn">Sign in</a></li>
+        <li ui-sref-active="active" ng-show="isSignedIn()"><a ui-sref="signIn">Sign in</a></li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div>
+</div>

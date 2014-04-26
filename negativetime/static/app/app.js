@@ -13,6 +13,12 @@ docApp.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, 
       url: "/discover",
       templateUrl: "discover/discover.html"
     })
+
+    .state('create', {
+      url: "/create",
+      templateUrl: "create/create.html"
+    })
+
     // SignIn State
     .state('signIn', {
       url: "/signIn",

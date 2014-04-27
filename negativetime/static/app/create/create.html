@@ -19,10 +19,20 @@
       <textarea id="projectSummary" class="form-control" placeholder="Summary" rows="5"></textarea>
     </div>
   </div>
-  <div class="form-group">
-    View
-    <input type="radio">Every One
-    <input type="checkbox">Only You
+  View Permission:
+  <div class="radio">
+    <label><input type="radio" name="view" value="shared">Everyone</label>
+  </div> 
+  <div class="radio">
+    <label><input type="radio" name="view" value="private">Only You</label>
+  </div>
+  <br>
+  Edit Permission:
+  <div class="radio">
+    <label><input type="radio" name="edit" value="private">Everyone</label>
+  </div>
+  <div class="radio">
+    <label><input type="radio" name="view" value="private">Only You</label>
   </div>
   <div class="form-group">
     <div class="col-sm-offset-2 col-sm-10">

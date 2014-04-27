@@ -15,6 +15,7 @@ Section = namedtuple('Section', ['name', 'content', 'children'])
 class Project(models.Model):
     user = models.ForeignKey(User)
     name = models.CharField(max_length=100)
+    summary = models.CharField(max_length=2048)
 
     def path(self):
         enconded_username = b32encode(self.user.username.encode('utf8')).decode('utf8')

@@ -8,7 +8,7 @@ from .models import Project, Section
 class ProjectSerializer(serializers.ModelSerializer):
     class Meta:
         model = Project
-        fields = ('id', 'user', 'name')
+        fields = ('id', 'user', 'name', 'summary')
 
 
 class UserSerializer(serializers.ModelSerializer):

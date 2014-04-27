@@ -21,7 +21,13 @@ docApp.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, 
 
     .state('manage', {
       url: "/manage",
-      templateUrl: "manage/manage.html"
+      templateUrl: "manage/manage.html",
+      controller: 'manageCtrl as manage',
+      resolve: {
+        projects: ['projectService', function(projectService) {
+          return projectService.getProjects();
+        }]
+      }
     })
 
     // SignIn State
@@ -32,9 +38,17 @@ docApp.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, 
     });
 
 }])
-.run(['$http', '$cookies', function($http, $cookies) {
-	console.log('csrftoken', $cookies.csrftoken);
-	$http.defaults.headers.common['X-CSRFToken'] = $cookies.csrftoken;
+.run(['$http', '$cookies', '$rootScope', '$state', function($http, $cookies, $rootScope, $state) {
+  // $http.defaults.headers.common['X-CSRFToken'] = $cookies.csrftoken;
+
+  $http.get('/admin/').then( function() {
+    $http.defaults.xsrfCookieName = 'csrftoken';
+    $http.defaults.xsrfHeaderName = 'X-CSRFToken';
+  });
+  
+  $rootScope.$on('$stateChangeError', function(event, toState, toParams, fromState, fromParams, error){
+    $state.go('signIn');
+  });
 }]);
 // .run(['$state', '$rootScope', function($state, $rootScope) {
 // 	$rootScope.$state = $state;

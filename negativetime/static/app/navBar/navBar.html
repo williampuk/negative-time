@@ -18,7 +18,7 @@
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li ui-sref-active="active" ng-hide="isSignedIn()"><a ui-sref="signIn">Sign in</a></li>
-        <li ui-sref-active="active" ng-show="isSignedIn()"><a ui-sref="signIn">Sign in</a></li>
+        <li ui-sref-active="active" ng-show="isSignedIn()"><a>{{username}}</a></li>
       </ul>
     </div><!--/.nav-collapse -->
   </div>

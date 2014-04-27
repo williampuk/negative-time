@@ -3,6 +3,16 @@
 docApp.factory('userAuthService', ['$http', function($http) {
 	var appUser = undefined;
 
+    var _loadUser = function() {
+        if (!appUser) {
+            $http.get('/user/').success(function(data) {
+                appUser = data;
+            })
+        }
+    }
+
+    _loadUser();
+
 	return {
 		isSignedIn: function() {
 			return !!appUser;
@@ -25,7 +35,7 @@ docApp.factory('userAuthService', ['$http', function($http) {
 
 			return $http(config).success(function(data, status, headers, config) {
 				console.log(data, status, headers, config);
-				appUser = {username: username};
+				_loadUser();
 			});
 		},
 

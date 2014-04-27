@@ -26,3 +26,15 @@ div#mainView {
 .navbar-nav.navbar-core-menu {
 	margin-left: 50px;
 }
+
+.statusLabel {
+	padding: 2px 15px;
+}
+
+.statusLabel.shared {
+	background-color: green;
+}
+
+.statusLabel.private {
+	background-color: red;
+}

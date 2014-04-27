@@ -41,6 +41,16 @@ docApp.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, 
         templateUrl: "funnystory/funnystory.html",
     })
 
+    .state('funnystoryeditor', {
+        url: "/funnystoryeditor/",
+        templateUrl: "funnystoryeditor/editor.html",
+        controller: 'funnyEditorCtrl'
+    })
+
+    .state('funnystoryedited', {
+        url: "/funnystoryedited/",
+        templateUrl: "funnystoryedited/funnystory.html",
+    })
     // SignIn State
     .state('signIn', {
       url: "/signIn",

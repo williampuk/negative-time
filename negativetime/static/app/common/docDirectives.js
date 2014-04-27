@@ -12,3 +12,11 @@ docApp.directive('onEnterKeyDown', function() {
         });
     };
 });
+
+//docApp.directive('richTextEditor', function() {
+//    return {
+//        link : function(scope, element, attrs, ctrl) {
+//            element.wysiwyg();
+//        }
+//    };
+//});

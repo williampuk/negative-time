@@ -8,7 +8,7 @@ docApp.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, 
   $urlRouterProvider.otherwise("/discover");
 
   //Home State
-  $stateProvider
+        $stateProvider
     .state('discover', {
       url: "/discover",
       templateUrl: "discover/discover.html"
@@ -28,6 +28,12 @@ docApp.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, 
           return projectService.getProjects();
         }]
       }
+    })
+
+    .state('editor', {
+      url: "/editor/:index",
+      templateUrl: "editor/editor.html",
+      controller: 'editorCtrl'
     })
 
     // SignIn State

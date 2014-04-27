@@ -1,7 +1,7 @@
 import json
 import os
 
-from django.contrib.auth import authenticate, logout
+from django.contrib.auth import authenticate, logout, login
 from django.views.generic import View
 from django.http import HttpResponse, Http404
 
@@ -22,6 +22,7 @@ class LoginView(View):
             user = authenticate(username=form.cleaned_data['username'],
                                 password=form.cleaned_data['password'])
             if user and user.is_active:
+                login(request, user)
                 return HttpResponse(status=status.HTTP_200_OK)
         return HttpResponse(status=status.HTTP_401_UNAUTHORIZED)
 

@@ -14,5 +14,5 @@ class ProjectSerializer(serializers.ModelSerializer):
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = get_user_model()
-        field = ('id', 'username')
+        fields = ('id', 'username')
 

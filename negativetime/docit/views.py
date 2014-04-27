@@ -6,11 +6,11 @@ from django.views.generic import View
 from django.http import HttpResponse, Http404
 
 
-from rest_framework.generics import ListCreateAPIView, ListAPIView
+from rest_framework.generics import ListCreateAPIView, RetrieveAPIView
 from rest_framework.permissions import IsAuthenticated
 from rest_framework import status
 
-from .serializers import ProjectSerializer
+from .serializers import ProjectSerializer, UserSerializer
 from .models import Project
 from .forms import LoginForm
 
@@ -31,6 +31,14 @@ class LogoutView(View):
     def get(self, request, format=None):
         logout(request)
         return HttpResponse(status=status.HTTP_200_OK)
+
+
+class UserRetrieveView(RetrieveAPIView):
+    serializer_class = UserSerializer
+    permission_classes = (IsAuthenticated,)
+
+    def get_object(self, queryset=None):
+        return self.request.user
 
 
 class ProjectListCreateView(ListCreateAPIView):

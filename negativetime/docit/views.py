@@ -3,7 +3,7 @@ import os
 
 from django.contrib.auth import authenticate, logout, login
 from django.views.generic import View
-from django.http import HttpResponse, Http404
+from django.http import HttpResponse, Http404, HttpResponseRedirect
 
 
 from rest_framework.generics import ListCreateAPIView, RetrieveAPIView
@@ -71,4 +71,7 @@ class SectionListView(View):
         jsons = json.dumps([to_dict(section) for section in sections])
         return HttpResponse(jsons)
 
+
+def home(request):
+    return HttpResponseRedirect('/static/app/index.html')
 

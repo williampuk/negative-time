@@ -1,6 +1,29 @@
 'use strict';
 
-docApp.factory('userAuthService', ['$http', function($http) {
+docApp.factory('AuthInterceptor', function ($window, $q) {
+    return {
+        request: function(config) {
+            config.headers = config.headers || {};
+            if ($window.sessionStorage.getItem('token')) {
+                config.headers.Authorization = 'jwt ' + $window.sessionStorage.getItem('token');
+            }
+            return config || $q.when(config);
+        },
+        response: function(response) {
+            if (response.status === 401) {
+                // TODO: Redirect user to login page.
+            }
+            return response || $q.when(response);
+        }
+    };
+});
+
+// Register the previously created AuthInterceptor.
+docApp.config(function ($httpProvider) {
+    $httpProvider.interceptors.push('AuthInterceptor');
+});
+
+docApp.factory('userAuthService', ['$http', '$window', function($http, $window) {
 	var appUser = undefined;
 
     var _loadUser = function() {
@@ -23,26 +46,27 @@ docApp.factory('userAuthService', ['$http', function($http) {
         },
 
 		signIn: function(username, password) {
+            var user = {
+                username: username,
+                password: password
+            };
 
-			var defaultsHeader = angular.extend({}, $http.defaults.headers);
+            return $http.post('/api-token-auth/', user)
+                .success(function (data) {
+                    // Stores the token until the user closes the browser window.
+                    $window.sessionStorage.setItem('token', data.token);
+                    _loadUser();
+                })
+            .error(function () {
+                $window.sessionStorage.removeItem('token');
+                // TODO: Show something like "Username or password invalid."
+            });
 
-			var config = {
-				method: 'POST',
-				url: '/login/',
-				data: $.param({username:username, password:password}),
-				headers: angular.extend(defaultsHeader, {'Content-Type' : 'application/x-www-form-urlencoded'})
-			};
-
-			return $http(config).success(function(data, status, headers, config) {
-				console.log(data, status, headers, config);
-				_loadUser();
-			});
 		},
 
 	    logoutUser: function() {
-			return $http.get('/logout/').success(function(data, status, headers, config) {
-				appUser = undefined;
-			});
+            $window.sessionStorage.removeItem('token');
+            appUser = undefined;
 	    }
 	};
 }]);

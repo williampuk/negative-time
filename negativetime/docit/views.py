@@ -1,36 +1,12 @@
-import json
-import os
 
-from django.contrib.auth import authenticate, logout, login
 from django.views.generic import View
-from django.http import HttpResponse, Http404, HttpResponseRedirect
-
+from django.http import HttpResponseRedirect
 
 from rest_framework.generics import ListCreateAPIView, RetrieveAPIView
 from rest_framework.permissions import IsAuthenticated
-from rest_framework import status
 
 from .serializers import ProjectSerializer, UserSerializer
 from .models import Project
-from .forms import LoginForm
-
-
-class LoginView(View):
-    def post(self, request, format=None):
-        form = LoginForm(request.POST)
-        if form.is_valid():
-            user = authenticate(username=form.cleaned_data['username'],
-                                password=form.cleaned_data['password'])
-            if user and user.is_active:
-                login(request, user)
-                return HttpResponse(status=status.HTTP_200_OK)
-        return HttpResponse(status=status.HTTP_401_UNAUTHORIZED)
-
-
-class LogoutView(View):
-    def get(self, request, format=None):
-        logout(request)
-        return HttpResponse(status=status.HTTP_200_OK)
 
 
 class UserRetrieveView(RetrieveAPIView):
@@ -74,4 +50,3 @@ class SectionListView(View):
 
 def home(request):
     return HttpResponseRedirect('/static/app/index.html')
-

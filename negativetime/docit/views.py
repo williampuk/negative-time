@@ -1,11 +1,10 @@
+from django.http import HttpResponse, Http404, HttpResponseRedirect
 
-from django.views.generic import View
-from django.http import HttpResponseRedirect
-
-from rest_framework.generics import ListCreateAPIView, RetrieveAPIView
+from rest_framework.generics import (ListCreateAPIView, RetrieveAPIView,
+                                     ListAPIView)
 from rest_framework.permissions import IsAuthenticated
 
-from .serializers import ProjectSerializer, UserSerializer
+from .serializers import ProjectSerializer, UserSerializer, SectionSerializer
 from .models import Project
 
 
@@ -28,24 +27,15 @@ class ProjectListCreateView(ListCreateAPIView):
         return Project.objects.filter(user=self.request.user)
 
 
-class SectionListView(View):
-    def get(self, request, format=None, project_id=None):
-        try:
-            project = Project.objects.get(id=project_id)
-        except Exception as e:
-            return Http404()
+class SectionListView(ListAPIView):
+    serializer_class = SectionSerializer
+    permission_classes = (IsAuthenticated,)
 
+    def get_queryset(self):
+        project_id = int(self.kwargs['pk'])
+        project = Project.objects.get(id=project_id)
         sections = project.sections()
-
-        def to_dict(section):
-            name, content, children = section
-            return {
-                'name': name,
-                'content': content,
-                'children': [to_dict(child) for child in children]
-            }
-        jsons = json.dumps([to_dict(section) for section in sections])
-        return HttpResponse(jsons)
+        return sections
 
 
 def home(request):

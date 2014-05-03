@@ -19,7 +19,7 @@ urlpatterns = patterns('',
     url(r'^api-token-auth/', 'rest_framework_jwt.views.obtain_jwt_token'),
 
     url(r'^projects/$', ProjectListCreateView.as_view(), name='projects'),
-    url(r'^projects/(?P<project_id>\d+)/$', SectionListView.as_view(), name='sections'),
+    url(r'^projects/(?P<pk>\d+)/$', SectionListView.as_view(), name='sections'),
     url(r'^user/$', UserRetrieveView.as_view(), name='user'),
 
     url(r'^$', home, name='user'),

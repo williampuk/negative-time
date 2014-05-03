@@ -54,7 +54,7 @@ class Project(models.Model):
                     section = Section(file[0], content, [])
                     tree[i-1][tuple(file[1])] = section
                 else:
-                    children = self.getChildren(tree[i], tuple(file[1]))
+                    children = self.get_children(tree[i], tuple(file[1]))
                     section = Section(file[0], content, children)
                     tree[i-1][tuple(file[1])] = section
 

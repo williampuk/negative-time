@@ -30,7 +30,7 @@ class ProjectTest(TestCase):
         section2 = Section("def", "", [])
         section3 = Section("ghi", "", [])
         input_list = {(1,2,3): section1, (1,2,2): section2, (1,1,1): section3}
-        result = project.getChildren(input_list, (1,2))
+        result = project.get_children(input_list, (1,2))
         assert len(result)==2
         assert result[1] is section1
         assert result[0] is section2
@@ -39,5 +39,5 @@ class ProjectTest(TestCase):
         project = mommy.make(Project)
         input = ["1_hello", "1.1_hello", "1.1.1_hello", "1.1.2_helllo", "1.2_byebye", "2_sad", "2.1_sadasad", "2.2_sad_sad"]
 
-        result = project.build_tree(input)
+        result = project.build_tree(input, project.path())
         assert len(result) == "hello"

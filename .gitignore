@@ -2,3 +2,5 @@
 .idea/
 *.swp
 db.sqlite3
+
+/docs/_build/

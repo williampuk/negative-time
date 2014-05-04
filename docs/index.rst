@@ -6,16 +6,25 @@
 doc-git
 =======
 
-Contents:
----------
+Architecture
+------------
 
 .. toctree::
    :maxdepth: 2
 
-   vcs
-   dev_env
-   conventions
-   docs
+   arch/db_schema
+
+
+Developer Guide
+---------------
+
+.. toctree::
+   :maxdepth: 2
+
+   dev_guide/vcs
+   dev_guide/dev_env
+   dev_guide/conventions
+   dev_guide/docs
 
 
 
@@ -25,4 +34,5 @@ Indices and tables
 * :ref:`genindex`
 * :ref:`modindex`
 * :ref:`search`
+* :ref:`glossary`
 
